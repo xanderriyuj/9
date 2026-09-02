@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PERCURSO FENOMENAL, LDA | Premium Ground Transit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS Variables & Apple-Inspired Dark Transit Theme --- */
+        :root {
+            --bg-deep: #000000;
+            --bg-surface: #111112;
+            --bg-card: #1c1c1e;
+            --color-primary: #0A84FF; /* iOS Blue */
+            --color-primary-glow: rgba(10, 132, 255, 0.3);
+            --color-secondary: #5E5CE6; /* Deep Purple */
+            --text-main: #F5F5F7;
+            --text-muted: #86868B;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --radius-lg: 18px;
+            --radius-sm: 8px;
+            --max-width: 1080px;
+            --transition-speed: 0.4s;
+        }
+
+        /* --- Global Resets & Typography --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-deep);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            color: var(--text-main);
+            letter-spacing: -0.02em;
+            font-weight: 600;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .citation {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            opacity: 0.6;
+            vertical-align: super;
+            margin-left: 2px;
+        }
+
+        /* --- Utility Classes --- */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-padding {
+            padding: 140px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-header h2 {
+            font-size: 3.2rem;
+            background: linear-gradient(135deg, #fff 0%, #a1a1a6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        /* --- Header Navigation --- */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .brand-logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+        }
+
+        .brand-logo svg {
+            color: var(--color-primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-menu a {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-menu a:hover {
+            color: var(--text-main);
+        }
+
+        /* --- 1. Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding-top: 64px;
+            position: relative;
+            background: radial-gradient(circle at 50% -20%, rgba(10, 132, 255, 0.15), transparent 60%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 5.5rem;
+            line-height: 1.05;
+            margin-bottom: 24px;
+            letter-spacing: -0.04em;
+            background: linear-gradient(180deg, #fff 0%, #86868b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            margin-bottom: 48px;
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+            opacity: 0;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 16px 32px;
+            background: var(--text-main);
+            color: #000;
+            font-size: 1.05rem;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: all var(--transition-speed) ease;
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+            opacity: 0;
+            box-shadow: 0 4px 15px rgba(255,255,255,0.1);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.02);
+            background: #ffffff;
+            box-shadow: 0 8px 24px rgba(255,255,255,0.25);
+        }
+
+        /* --- 2. About Us --- */
+        .about-section {
+            background-color: var(--bg-surface);
+        }
+
+        .about-card {
+            background: var(--bg-card);
+            padding: 70px;
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255,255,255,0.05);
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .about-card strong {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        /* --- 3. Services --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+        }
+
+        .service-box {
+            background: var(--bg-card);
+            padding: 50px 40px;
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: all var(--transition-speed) ease;
+        }
+
+        .service-box:hover {
+            border-color: rgba(10, 132, 255, 0.3);
+            background: #1a1a1c;
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            color: var(--color-primary);
+            margin-bottom: 24px;
+        }
+
+        .service-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .service-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        .service-box p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        /* --- 4. Process --- */
+        .process-section {
+            background-color: var(--bg-surface);
+        }
+
+        .process-track {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .process-step {
+            width: 30%;
+            text-align: center;
+        }
+
+        .step-circle {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #1c1c1e, #2c2c2e);
+            border: 1px solid rgba(10, 132, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px auto;
+            color: var(--color-primary);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .process-step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+
+        .process-step p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* --- 5. Contact Section --- */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255,255,255,0.05);
+            overflow: hidden;
+        }
+
+        .form-area {
+            padding: 60px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px;
+            background: var(--bg-surface);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius-sm);
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color var(--transition-speed) ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 2px rgba(10, 132, 255, 0.1);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--color-primary);
+            color: #000;
+            border: none;
+            padding: 16px 32px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            width: 100%;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .submit-btn:hover {
+            background: #fff;
+            box-shadow: 0 4px 15px var(--color-primary-glow);
+        }
+
+        .info-area {
+            background: rgba(10, 132, 255, 0.03);
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-left: 1px solid rgba(255,255,255,0.02);
+        }
+
+        .info-item {
+            margin-bottom: 32px;
+        }
+
+        .info-item h4 {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .info-item p, .info-item a {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            font-weight: 400;
+        }
+
+        .info-item a:hover {
+            color: var(--color-primary);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--bg-deep);
+            color: var(--text-muted);
+            text-align: center;
+            padding: 40px 0;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-ref {
+            display: block;
+            margin-top: 12px;
+            font-size: 0.75rem;
+            opacity: 0.3;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 3.5rem; }
+            .contact-layout { grid-template-columns: 1fr; }
+            .process-track { flex-direction: column; gap: 48px; align-items: center; }
+            .process-step { width: 100%; max-width: 350px; }
+            .nav-menu { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <div class="container nav-wrapper">
+            <a href="#" class="brand-logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                PERCURSO FENOMENAL
+            </a>
+            <nav class="nav-menu">
+                <a href="#about">Corporate Overview</a>
+                <a href="#services">Transit Solutions</a>
+                <a href="#process">Logistics System</a>
+                <a href="#contact">Executive Comms</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>Precision transit.<br>Executive mobility.</h1>
+            <p>PERCURSO FENOMENAL, LDA<span class="citation"></span> delivers elite ground passenger transportation and premium limousine services across Portugal.</p>
+            <a href="#contact" class="btn-primary">Reserve Transport</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section-padding about-section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>Operational Foundation.</h2>
+                <p class="section-subtitle">Bridging secure logistics with premium passenger experiences.</p>
+            </div>
+            <div class="about-card">
+                Located in the strategic hub of ODIVELAS LISBOA Portugal<span class="citation"></span>, <strong>PERCURSO FENOMENAL, LDA</strong><span class="citation"></span> operates as a premier provider in the Transit and Ground Passenger Transportation<span class="citation"></span> sector. We specialize in high-end Taxi and Limousine Service<span class="citation"></span>, delivering secure and efficient travel solutions for corporate and private clients. Our dedicated infrastructure supports a wide array of passenger logistics, seamlessly integrating modern routing technology with traditional chauffeur excellence. Operating within the broader Transportation and Warehousing<span class="citation"></span> industry, we maintain the highest standards of reliability and operational discretion. By focusing on fleet optimization and route efficiency, we ensure every journey is executed with absolute precision. Ultimately, our mission is to provide an unparalleled transit experience that prioritizes comfort, punctuality, and uncompromising safety.
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section-padding" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Capabilities.</h2>
+                <p class="section-subtitle">Comprehensive protocols for professional ground transit.</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-box">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect>
+                            <polyline points="17 2 12 7 7 2"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Executive Limousine Service</h3>
+                    <p>We deliver premium Taxi and Limousine Service<span class="citation"></span> tailored for executive clientele. Our fleet is meticulously maintained to provide the highest levels of comfort and security during transit. Every chauffeur is extensively trained to ensure a discreet, professional, and punctual travel experience.</p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-box">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <h3>Corporate Ground Transit</h3>
+                    <p>Our firm provides dedicated Transit and Ground Passenger Transportation<span class="citation"></span> solutions for growing enterprises. We seamlessly coordinate multi-vehicle logistics to handle complex corporate events and executive scheduling. By delegating your passenger transport needs to our team, businesses achieve higher overall logistical efficiency.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-box">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Logistics & Fleet Management</h3>
+                    <p>Beyond standard passenger transport, our expertise spans the Transportation and Warehousing<span class="citation"></span> sector. We manage complex routing algorithms and vehicle maintenance schedules to ensure optimal fleet performance. This comprehensive approach guarantees that our vehicles are always ready to deploy at a moment's notice.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="section-padding process-section" id="process">
+        <div class="container">
+            <div class="section-header">
+                <h2>Methodology.</h2>
+                <p class="section-subtitle">A systematic approach to secure passenger logistics.</p>
+            </div>
+            
+            <div class="process-track">
+                <!-- Step 1 -->
+                <div class="process-step">
+                    <div class="step-circle">1</div>
+                    <h3>Routing & Dispatch</h3>
+                    <p>We utilize advanced logistical software to map the most secure and efficient routes for every passenger assignment prior to deployment.</p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="process-step">
+                    <div class="step-circle">2</div>
+                    <h3>Executive Transit</h3>
+                    <p>Our professional chauffeurs execute the transit plan with absolute precision, prioritizing passenger comfort and strict schedule adherence.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="process-step">
+                    <div class="step-circle">3</div>
+                    <h3>Secure Arrival</h3>
+                    <p>We ensure secure, on-time arrivals at all final destinations, accompanied by comprehensive post-trip fleet maintenance and reporting.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section-padding" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Secure Comms.</h2>
+                <p class="section-subtitle">Initiate contact with our dispatch center for corporate and executive transit inquiries.</p>
+            </div>
+            
+            <div class="contact-layout">
+                <!-- Contact Form -->
+                <div class="form-area">
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <label for="name">Client / Organization Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Authorized Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Transit Itinerary / Inquiry</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Transmit Request</button>
+                    </form>
+                </div>
+
+                <!-- Contacts Info -->
+                <div class="info-area">
+                    <div class="info-item">
+                        <h4>Headquarters</h4>
+                        <p>ODIVELAS LISBOA<span class="citation"></span><br>Portugal<span class="citation"></span></p>
+                    </div>
+
+                    <div class="info-item">
+                        <h4>Digital Comm Node</h4>
+                        <a href="mailto:info@percursofenomenal.site">info@percursofenomenal.site</a>
+                    </div>
+
+                    <div class="info-item">
+                        <h4>Dispatch Line</h4>
+                        <p>+351-219341451<span class="citation"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 PERCURSO FENOMENAL, LDA. All rights reserved. Premium Transit & Ground Transportation.</p>
+            <span class="footer-ref" style="display: none;">Reference: image_7ba321.png</span>
+        </div>
+    </footer>
+
+    <!-- Smooth Scroll Script -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 64,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
